@@ -159,9 +159,17 @@ router.get('/confirm-email/:token', (req, res) => {
     return res.redirect('/profile');
   }
 
+  const oldEmail = user.email;
+
   user.email = user.newEmailPending;
   user.changeEmailToken = null;
   user.newEmailPending = null;
+
+  // Simulated notification to the old email
+  // eslint-disable-next-line no-console
+  console.log(
+    `Email changed from ${oldEmail} to ${user.email}; notification sent to ${oldEmail}`,
+  );
 
   req.session.user.email = user.email;
   req.session.message = 'Email successfully changed.';

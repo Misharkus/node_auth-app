@@ -37,7 +37,13 @@ app.use('/profile', profileRoutes);
 
 app.use((req, res) => {
   const body = `<h1>404 Not Found</h1><p>The page you are looking for does not exist.</p>`;
-  const html = renderLayout('404', body, req.session.user);
+  const html = renderLayout(
+    '404',
+    body,
+    req.session.user,
+    req.session.error,
+    req.session.message,
+  );
 
   res.status(404).send(html);
 });
