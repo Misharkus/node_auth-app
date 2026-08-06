@@ -146,7 +146,7 @@ router.post('/email', (req, res) => {
   user.changeEmailToken = changeEmailToken;
   user.newEmailPending = newEmail;
 
-  req.session.message = `Confirmation email sent to the new address. <a href="/profile/confirm-email/\${changeEmailToken}">[Simulate click]</a>`;
+  req.session.message = `Notice sent to ${user.email}. Confirmation email sent to the new address. <a href="/profile/confirm-email/${changeEmailToken}">[Simulate click]</a>`;
   res.redirect('/profile');
 });
 
